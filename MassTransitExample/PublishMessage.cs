@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace MassTransitExample
 {
-    public class RabbitMqConsoleListenerHandler
+    public class PublishMessage
     {
         public static async Task BusSender(Message message, IConfiguration _configuration)
         {

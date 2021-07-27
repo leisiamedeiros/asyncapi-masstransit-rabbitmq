@@ -5,7 +5,7 @@ using MassTransit;
 using MassTransitExample;
 using Microsoft.Extensions.Configuration;
 
-namespace RabbitMqConsoleListener
+namespace MassTransitExample
 {
     public class OrdersSendReceive
     {
@@ -20,7 +20,7 @@ namespace RabbitMqConsoleListener
             await bus.StartAsync(source.Token);
 
             // publish
-            await bus.Publish<OrderSubmitted>(new { OrderId = Guid.NewGuid() });
+            await bus.Publish<OrderSubmitted>(new { OrderId = Guid.NewGuid(), Name = "MyOrder" });
 
             Console.WriteLine("SenderOrder: The message was published!");
             await bus.StopAsync();
@@ -63,6 +63,7 @@ namespace RabbitMqConsoleListener
             public async Task Consume(ConsumeContext<OrderSubmitted> context)
             {
                 Console.WriteLine("ConsumeOrder: {0}", context.Message.OrderId);
+                Console.WriteLine("ConsumeOrder: {0}", context.Message.Name);
                 await Task.CompletedTask;
             }
         }

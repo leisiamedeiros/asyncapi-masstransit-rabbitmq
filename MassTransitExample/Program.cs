@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace MassTransitExample
@@ -9,11 +10,17 @@ namespace MassTransitExample
         {
             var config = Init();
 
-            await RabbitMqConsoleListenerHandler.BusSender(new Message(), config);
-            await RabbitMqConsoleListener.OrdersSendReceive.SenderOrder(config);
+            // example 01
+            await PublishMessage.BusSender(new Message(), config);
+            await PublishMessage.BusReceive(config);
 
-            await RabbitMqConsoleListenerHandler.BusReceive(config);
-            await RabbitMqConsoleListener.OrdersSendReceive.ConsumeOrder(config);
+            // example 02
+            await OrdersSendReceive.SenderOrder(config);
+            await OrdersSendReceive.ConsumeOrder(config);
+
+            // example 03 RoutingKey (Direct Exchange)
+            await SubmitOrderKey.SenderSubmitOrder(config);
+            await SubmitOrderKey.ConsumeSubmitOrder(config);
         }
 
         private static IConfigurationRoot Init()

@@ -10,5 +10,13 @@ namespace MassTransitExample
     public interface OrderSubmitted
     {
         Guid OrderId { get; }
+        string Name { get; }
     }
+
+    public interface SubmitOrder
+    {
+        string CustomerType { get; }
+        Guid TransactionId { get; }
+    }
+
 }
