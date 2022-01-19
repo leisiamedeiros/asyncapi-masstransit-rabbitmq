@@ -1,11 +1,15 @@
-# Console application example with RabbitMQ MassTransit
+# Async API with masstransit and rabbitmq
 
-An example of a dotnet console application with a usage of [MassTransit](https://masstransit-project.com/). 
+An example of a dotnet application with usage of [MassTransit](https://masstransit-project.com/) 
+with rabbitmq broker and the documentation generated following the [AsyncAPI specification](https://www.asyncapi.com/) 
+by [Saunter](https://github.com/tehmantra/saunter) package.  
 
-You can see theses examples on [documentation](https://masstransit-project.com/usage/configuration.html#console-app).
+![asyncapi-ui](img/asyncapi-ui.png)
 
-To run this application just execute `dotnet run --project MassTransitExample.csproj`
-  - You must have the dotnet and docker installed. 
+## Run
+To run this application just execute `dotnet run --project src/WebApplicationSample/WebApplicationSample.csproj`
+
+> You must have the dotnet installed. 
 
 # Docker compose
 
@@ -13,7 +17,9 @@ To run the rabbit container execute `docker-compose up -d`, the docker-compose f
 
 Access the default host:port `http://localhost:15672/` and login with the default `guest` user and password. 
 
-## Docker image
+> You must have docker installed
+
+# Docker image
 
 Preconfigured Docker image, based on default management-alpine image, maintained by MassTransit, including the delayed exchange plug-in, as well as the Management interface enabled.
 
